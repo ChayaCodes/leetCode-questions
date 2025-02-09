@@ -14,7 +14,7 @@ class Solution(object):
             histo = [0] * 26
             for c in s:
                 histo[ord(c) - ord('a')] += 1
-            return tuple(histo)
+            return str(histo)
 
         for string in strs:
             key = generate_key(string)
