@@ -6,10 +6,11 @@ class Solution(object):
         """
         freq_anagrams = {}
         for string in strs:
-            if str(sorted(string)) in freq_anagrams:
-                freq_anagrams[str(sorted(string))].append(string)
+            key = str(sorted(string))
+            if key in freq_anagrams:
+                freq_anagrams[key].append(string)
             else:
-                freq_anagrams[str(sorted(string))] = [string]
+                freq_anagrams[key] = [string]
 
         return list(freq_anagrams.values())
         
