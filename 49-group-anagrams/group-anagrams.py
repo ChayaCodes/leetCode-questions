@@ -1,16 +1,23 @@
+from collections import defaultdict
+
 class Solution(object):
     def groupAnagrams(self, strs):
         """
-        :type strs: List[str]
-        :rtype: List[List[str]]
+        Groups a list of strings into anagrams.
+        
+        :param strs: List[str] - List of strings to be grouped
+        :return: List[List[str]] - List of groups of anagrams
         """
-        freq_anagrams = {}
+        freq_anagrams = defaultdict(list)
+
+        def generate_key(s):
+            histo = [0] * 26
+            for c in s:
+                histo[ord(c) - ord('a')] += 1
+            return tuple(histo)
+
         for string in strs:
-            key = str(sorted(string))
-            if key in freq_anagrams:
-                freq_anagrams[key].append(string)
-            else:
-                freq_anagrams[key] = [string]
+            key = generate_key(string)
+            freq_anagrams[key].append(string)
 
         return list(freq_anagrams.values())
-        
