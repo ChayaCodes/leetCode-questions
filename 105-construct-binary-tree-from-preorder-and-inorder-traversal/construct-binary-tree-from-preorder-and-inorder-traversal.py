@@ -15,7 +15,6 @@ class Solution(object):
             
             inorder_index = inorder_map[node_val]
             
-            # Build left and right subtrees
             node.left = build_tree_rec(start, inorder_index)
             node.right = build_tree_rec(inorder_index + 1, end)
             
