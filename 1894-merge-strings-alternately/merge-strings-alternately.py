@@ -10,8 +10,10 @@ class Solution(object):
         len_2 = len(word2)
         res = ""
         for i in range(max_len):
-            res += word1[i] if i < len_1 else ""
-            res += word2[i] if i < len_2 else ""
+            if i < len_1:
+                res += word1[i] 
+            if i < len_2:
+                res += word2[i] 
         return res
         
 
