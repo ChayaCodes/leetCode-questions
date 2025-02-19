@@ -1,5 +1,3 @@
-import math
-
 class Solution(object):
     def gcdOfStrings(self, str1, str2):
         """
@@ -10,15 +8,10 @@ class Solution(object):
         if str1 + str2 != str2 + str1:
             return ""
         
-        len_1 = len(str1)
-        len_2 = len(str2)
+        gcd_length = self.gcd(len(str1), len(str2))
+        return str1[:gcd_length]
 
-        if len_1 == len_2:
-            return str1
-
-        elif len_1 < len_2:
-            return self.gcdOfStrings(str1, str2[len_1:])
-            
-        return self.gcdOfStrings(str2, str1[len_2:])
-
-
+    def gcd(self, a, b):
+        while b:
+            a, b = b, a % b
+        return a
