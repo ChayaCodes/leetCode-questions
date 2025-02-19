@@ -5,13 +5,13 @@ class Solution(object):
         :type word2: str
         :rtype: str
         """
-        min_len = min(len(word1), len(word2))
+        max_len = max(len(word1), len(word2))
+        len_1 = len(word1)
+        len_2 = len(word2)
         res = ""
-        for i in range(min_len):
-            res += word1[i]
-            res += word2[i]
-        res += word1[min_len:]
-        res += word2[min_len:]
+        for i in range(max_len):
+            res += word1[i] if i < len_1 else ""
+            res += word2[i] if i < len_2 else ""
         return res
         
 
