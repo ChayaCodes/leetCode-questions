@@ -1,9 +1,6 @@
 
 class Solution:
-    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
-        return self._hasPathSumRec(root, targetSum)
-
-    def _hasPathSumRec(self, node: Optional[TreeNode], targetSum: int, cur_sum: int = 0) -> bool:
+    def _hasPathSumRec(self, node: Optional[TreeNode], targetSum: int, cur_sum: int) -> bool:
         if not node:
             return False
 
@@ -16,3 +13,6 @@ class Solution:
         # Recursively check the left and right subtrees
         return (self._hasPathSumRec(node.left, targetSum, cur_sum) or 
                 self._hasPathSumRec(node.right, targetSum, cur_sum))
+
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        return self._hasPathSumRec(root, targetSum, 0)
