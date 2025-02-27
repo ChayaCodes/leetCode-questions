@@ -1,24 +1,28 @@
 from collections import deque
 
-class BSTIterator:
 
+class BSTIterator:
     def __init__(self, root: Optional[TreeNode]):
         self.stack = deque()
-        self.stack.append(root)
-        
+        self._push_left_branch(root)
+
+    def _push_left_branch(self, node: Optional[TreeNode]):
+        """ פונקציה עזר שמוסיפה את כל תת-העץ השמאלי למחסנית """
+        while node:
+            self.stack.append(node)
+            node = node.left
 
     def next(self) -> int:
+        """ מחזירה את הערך הבא בסדר ה- Inorder """
+        if not self.hasNext():
+            raise Exception("No more elements in BSTIterator")
+
         cur = self.stack.pop()
-        cur_left = cur.left
-        if cur.left:
-            cur.left = None
-            self.stack.append(cur)
-            self.stack.append(cur_left)
-            return self.next()
         if cur.right:
-            self.stack.append(cur.right)
+            self._push_left_branch(cur.right)
+
         return cur.val
-        
 
     def hasNext(self) -> bool:
-        return len(self.stack) > 0
+        """ מחזירה האם יש עוד אלמנטים באיטרטור """
+        return bool(self.stack)
