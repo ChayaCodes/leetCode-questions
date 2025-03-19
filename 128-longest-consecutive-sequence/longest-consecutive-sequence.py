@@ -1,22 +1,32 @@
-class Solution(object):
-    def longestConsecutive(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        unchecked_nums = set(nums)
-        max_consecutive_length = 0
-        
-        for num in nums:
-            if num - 1 not in unchecked_nums:
-                current_length = 0
-                current_num = num
-                
-                while current_num in unchecked_nums:
-                    current_length += 1
-                    unchecked_nums.remove(current_num)
-                    current_num += 1
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        st = set()
+        res = 0
 
-                max_consecutive_length = max(max_consecutive_length, current_length)
-        
-        return max_consecutive_length
+        # Hash all the array elements
+        for val in nums:
+            st.add(val)
+
+        # Check each possible sequence from the start 
+        # then update length
+        for val in nums:
+
+            # If current element is the starting element of a sequence
+            if val in st and (val - 1) not in st:
+
+                # Then check for next elements in the sequence
+                cur = val
+                cnt = 0
+                while cur in st:
+
+                    # Remove this number to avoid recomputation
+                    st.remove(cur)
+                    cur += 1
+                    cnt += 1
+
+                # Update optimal length
+                res = max(res, cnt)
+
+        return res
+
+            
