@@ -11,5 +11,5 @@ class Solution:
             if count > 1:
                 result.extend(list(str(count)))
 
-        chars[:] = result  # overwrite the original list
+        chars[:] = result
         return len(chars)
